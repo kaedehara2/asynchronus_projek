@@ -35,6 +35,9 @@ Ini dilakukan agar tampilan teks tidak terlalu panjang saat ditampilkan di layar
 - Jika terjadi error saat melakukan permintaan HTTP (misalnya koneksi gagal, API tidak merespons, atau format data tidak sesuai), maka fungsi catchError akan menangkap error tersebut.
 - Error yang ditangkap akan disimpan ke dalam variabel result, lalu ditampilkan sebagai teks dengan pesan:
 
-```An error occurred: <deskripsi error>
-```
 
+
+```kotlin
+    An error occurred: <deskripsi error>
+```
+Ini mencegah aplikasi crash dan memberi tahu pengguna bahwa ada masalah dengan permintaan data.
