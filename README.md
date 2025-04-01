@@ -17,3 +17,24 @@ JAWABAN SOAL
 - DONE
 - ![ss tugas](assets/jawaban-soal2.png)
 
+## SOAL 3 PRAKTIKUM 1
+
+- Jelaskan maksud kode langkah 5 tersebut terkait substring dan catchError!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 3.
+
+JAWABAN SOAL
+
+Penjelasan Kode Langkah 5
+Kode ini merupakan event handler untuk tombol ElevatedButton yang bertugas untuk mengambil data dari Google Books API menggunakan fungsi getData().
+
+1. Fungsi substring(0, 100)
+- response.body.substring(0, 100) berarti mengambil 100 karakter pertama dari respon JSON yang didapat dari API.
+Ini dilakukan agar tampilan teks tidak terlalu panjang saat ditampilkan di layar.
+
+2. Fungsi catchError((error) {...})
+- Jika terjadi error saat melakukan permintaan HTTP (misalnya koneksi gagal, API tidak merespons, atau format data tidak sesuai), maka fungsi catchError akan menangkap error tersebut.
+- Error yang ditangkap akan disimpan ke dalam variabel result, lalu ditampilkan sebagai teks dengan pesan:
+
+```An error occurred: <deskripsi error>
+```
+
