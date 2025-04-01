@@ -32,6 +32,32 @@ class FuturePage extends StatefulWidget {
 class _FuturePageState extends State<FuturePage> {
   String result = '';
 
+  // Fungsi count() yang dijalankan saat tombol ditekan
+  Future count() async {
+    int total = 0;
+    total = await returnOneAsync();
+    total += await returnTwoAsync();
+    total += await returnThreeAsync();
+    setState(() {
+      result = total.toString();
+    });
+  }
+
+  Future<int> returnOneAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 1;
+  }
+
+  Future<int> returnTwoAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 2;
+  }
+
+  Future<int> returnThreeAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 3;
+  }
+
   Future<http.Response> getData() async {
     const authority = 'www.googleapis.com';
     const path = 'books/v1/volumes/tZldEAAAQBAJ';
@@ -51,6 +77,10 @@ class _FuturePageState extends State<FuturePage> {
           children: [
             ElevatedButton(
               onPressed: () {
+                count(); // Memanggil fungsi count()
+                
+                // Kode lama dikomentari sesuai instruksi
+                /*
                 getData().then((response) {
                   setState(() {
                     result = response.body.substring(0, 100); // Ambil 100 karakter pertama
@@ -60,6 +90,7 @@ class _FuturePageState extends State<FuturePage> {
                     result = 'An error occurred: $error';
                   });
                 });
+                */
               },
               child: const Text('GO!'),
             ),
