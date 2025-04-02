@@ -82,3 +82,69 @@ KESIMPULAN
 GIF Soal 4 Praktikum 2
 ![GIF](screencapture/w5-soal4.gif)
 
+## SOAL 5 PRAKTIKUM 3
+
+- Jelaskan maksud kode langkah 2 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 5".
+
+JAWABAN
+1. Penjelasan Kode Completer
+Kode ini menggunakan Completer, yang memungkinkan kita untuk mengontrol kapan Future akan diselesaikan secara manual.
+
+1.late Completer completer;
+Deklarasi variabel completer dengan tipe Completer<int>.
+
+- late berarti variabel akan diinisialisasi nanti sebelum digunakan.
+- Completer<int> digunakan untuk membuat sebuah Future yang bisa dikendalikan secara manual.
+
+2.Future getNumber()
+```kotlin
+Future getNumber() {
+  completer = Completer<int>(); // Membuat instance baru dari Completer
+  calculate(); // Memanggil fungsi calculate()
+  return completer.future; // Mengembalikan future yang akan selesai nanti
+}
+```
+- Membuat Completer<int> baru untuk mengontrol hasilnya.
+- Memanggil calculate() untuk memulai perhitungan.
+- Mengembalikan completer.future, yang akan selesai ketika calculate() selesai diproses.
+
+3.Future calculate()async
+```kotlin
+Future calculate() async {
+  await Future.delayed(const Duration(seconds: 5));
+  completer.complete(42);
+}
+```
+- Menunggu 5 detik (Future.delayed mensimulasikan operasi yang lama, seperti mengambil data dari internet).
+- Setelah 5 detik, completer.complete(42); menandakan bahwa Future selesai dengan nilai 42.
+
+Bagaimana Kode Ini Bekerja?
+- Ketika getNumber() dipanggil, sebuah Completer baru dibuat.
+- Fungsi calculate() dijalankan, tapi tidak langsung mengembalikan hasil.
+- Program menunggu selama 5 detik.
+- Setelah 5 detik, completer.complete(42); menyelesaikan Future dengan nilai 42.
+- Nilai 42 sekarang bisa digunakan di mana pun getNumber() dipanggil.
+
+###
+Contoh Pemakaian
+Misalnya, jika kita memanggil:
+```kotlin
+void main() async {
+  print('Mengambil angka...');
+  int number = await getNumber();
+  print('Hasil: $number');
+}
+```
+Output yang dihasilkan
+```kotlin
+Mengambil angka...
+(setelah 5 detik)
+Hasil: 42
+```
+
+2. Hasil screencapture gif aplikasi
+![GIF](screencapture/w5-soal5.gif)
+
+
+
