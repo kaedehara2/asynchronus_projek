@@ -146,5 +146,67 @@ Hasil: 42
 2. Hasil screencapture gif aplikasi
 ![GIF](screencapture/w5-soal5.gif)
 
+## SOAL 6 PRAKTIKUM 3
+
+- Jelaskan maksud perbedaan kode langkah 2 dengan langkah 5-6 tersebut!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 6".
+
+JAWABAN 
+
+1. Perbedaan Kode pada Langkah 2 vs Langkah 5-6
+
+1.kode pada langkah 2
+```kotlin
+late Completer completer;
+
+Future getNumber() {
+  completer = Completer<int>();  // Membuat Completer baru
+  calculate();  // Memulai proses perhitungan
+  return completer.future;  // Mengembalikan future yang akan diselesaikan nanti
+}
+
+Future calculate() async {
+  await Future.delayed(const Duration(seconds: 5));  // Menunggu selama 5 detik
+  completer.complete(42);  // Future diselesaikan dengan nilai 42
+}
+```
+PENJELASAN 
+- getNumber() mengembalikan Future<int> yang akan selesai dalam 5 detik.
+- calculate() menunda eksekusi selama 5 detik lalu menyelesaikan Completer dengan nilai 42.
+- Tidak ada penanganan error. Jika terjadi error, program bisa crash.
+
+2.kode pada langkah 5(calculate2())
+```kotlin
+calculate2() async {
+    try {
+      await Future.delayed(const Duration(seconds: 5));  // Menunggu 5 detik
+      completer.complete(42);  // Selesaikan Future dengan nilai 42
+    } 
+    catch (_) {
+      completer.completeError({});  // Jika ada error, selesaikan Future dengan error
+    }
+}
+```
+Perbedaan dengan Langkah 2:
+- Menambahkan try-catch untuk menangani kemungkinan error.
+- Jika terjadi error saat Future.delayed, program tidak crash, tetapi menangani error dengan completeError({}).
+
+3.kode pada langkah 6 (getNumber() dengan then dan catchError)
+```kotlin
+getNumber().then((value) {
+  setState(() {
+    result = value.toString();  // Jika sukses, tampilkan hasil
+  });
+}).catchError((e) {
+  result = 'An error occurred';  // Jika error, tampilkan pesan error
+});
+```
+✅ Perbedaan dengan Langkah 2:
+- Menggunakan .then() untuk menangani hasil Future.
+- Menggunakan .catchError() untuk menangani error, yang tidak ada di Langkah 2.
+- Lebih aman dibanding Langkah 2 karena bisa menangani error dari calculate2().
+
+2. Hasil screencapture gif 
+![GIF](screencapture/w5-soal6.gif)
 
 
