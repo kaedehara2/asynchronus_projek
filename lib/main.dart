@@ -32,8 +32,8 @@ class FuturePage extends StatefulWidget {
 
 class _FuturePageState extends State<FuturePage> {
   String result = '';
+  late Completer<int> completer; // ✅ Pastikan Completer memiliki tipe <int>
 
-  // Fungsi count() yang dijalankan saat tombol ditekan
   Future count() async {
     int total = 0;
     total = await returnOneAsync();
@@ -66,13 +66,12 @@ class _FuturePageState extends State<FuturePage> {
     return await http.get(url);
   }
 
-  late Completer completer;
-
   Future getNumber() {
-    completer = Completer<int>();
+    completer = Completer<int>(); // ✅ Pastikan Completer diinisialisasi dengan tipe yang benar
     calculate();
     return completer.future;
   }
+
   Future calculate() async {
     await Future.delayed(const Duration(seconds: 5));
     completer.complete(42);
@@ -80,13 +79,44 @@ class _FuturePageState extends State<FuturePage> {
 
   calculate2() async {
     try {
-      await new Future.delayed(const Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 5)); // ✅ Hapus `new`
       completer.complete(42);
-    }
-    catch (_) {
-      completer.completeError({});
+    } catch (_) {
+      completer.completeError(Exception('An error occurred')); // ✅ Gunakan Exception agar lebih jelas
     }
   }
+
+
+  void returnFG() {
+    //FutureGroup<int> futureGroup = FutureGroup<int>(); // ✅ Ganti nama variabel agar tidak bentrok
+    //futureGroup.add(returnOneAsync());
+    //futureGroup.add(returnTwoAsync());
+    //futureGroup.add(returnThreeAsync());
+    //futureGroup.close();
+final futures = Future.wait<int>([
+    returnOneAsync(),
+    returnTwoAsync(),
+    returnThreeAsync(),
+  ]);
+  futures.then((List<int> value) {
+    int total = value.reduce((a, b) => a + b);
+    setState(() {
+      result = total.toString();
+    });
+  });
+}
+
+  //   futureGroup.future.then((List<int> value) {
+  //     int total = value.reduce((sum, element) => sum + element); // ✅ Ringkas perhitungan
+  //     setState(() {
+  //       result = total.toString();
+  //     });
+  //   }).catchError((error) {
+  //     setState(() {
+  //       result = 'An error occurred: $error'; // ✅ Tambahkan error handling
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -100,28 +130,17 @@ class _FuturePageState extends State<FuturePage> {
           children: [
             ElevatedButton(
               onPressed: () {
+                returnFG();
+                /*
                 getNumber().then((value) {
                   setState(() {
                     result = value.toString();
                   });
                 }).catchError((e) {
-                  result = 'An error occured';
-                });
-               // count(); // Memanggil fungsi count()
-                
-                // Kode lama dikomentari sesuai instruksi
-                /*
-                getData().then((response) {
-                  setState(() {
-                    result = response.body.substring(0, 100); // Ambil 100 karakter pertama
-                  });
-                }).catchError((error) {
-                  setState(() {
-                    result = 'An error occurred: $error';
-                  });
+                  result = 'An error occurred';
                 });
                 */
-              },
+              }, // ✅ Perbaiki penutupan onPressed
               child: const Text('GO!'),
             ),
             const SizedBox(height: 20),
