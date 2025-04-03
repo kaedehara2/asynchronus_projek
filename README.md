@@ -271,9 +271,9 @@ void returnFG() {
 - Tidak menangani error secara eksplisit, tetapi bisa ditambahkan jika diperlukan.
 
 KESIMPULAN
-✅ Jika ingin kode yang lebih bersih dan ringkas, gunakan Future.wait().
-✅ Jika membutuhkan kontrol lebih dalam menangani error dan mengelola Future satu per satu, gunakan FutureGroup.
-✅ Hasil akhir dari kedua metode tetap sama, hanya pendekatan kode yang berbeda.
+- Jika ingin kode yang lebih bersih dan ringkas, gunakan Future.wait().
+- Jika membutuhkan kontrol lebih dalam menangani error dan mengelola Future satu per satu, gunakan FutureGroup.
+- Hasil akhir dari kedua metode tetap sama, hanya pendekatan kode yang berbeda.
 
 
 
