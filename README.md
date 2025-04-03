@@ -209,4 +209,72 @@ getNumber().then((value) {
 2. Hasil screencapture gif 
 ![GIF](screencapture/w5-soal6.gif)
 
+## SOAL 7 PRAKTIKUM 4
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 7".
+
+JAWABAN 
+
+1. Done berhasil gif screencapture 
+![GIF](screencapture/w5-soal7.gif)
+
+## SOAL 8 PRAKTIKUM 4
+
+- Jelaskan maksud perbedaan kode langkah 1 dan 4!
+
+JAWABAN
+
+1.Langkah 1: Menggunakan FutureGroup
+```kotlin
+void returnFG() {
+  FutureGroup<int> futureGroup = FutureGroup<int>(); // Membuat FutureGroup
+  futureGroup.add(returnOneAsync()); // Menambahkan Future pertama
+  futureGroup.add(returnTwoAsync()); // Menambahkan Future kedua
+  futureGroup.add(returnThreeAsync()); // Menambahkan Future ketiga
+  futureGroup.close(); // Menutup FutureGroup agar mulai dieksekusi
+
+  futureGroup.future.then((List<int> value) {
+    int total = value.reduce((sum, element) => sum + element); // Menjumlahkan hasil Future
+    setState(() {
+      result = total.toString(); // Menampilkan hasil ke UI
+    });
+  }).catchError((error) { // Menangani error jika terjadi kesalahan
+    setState(() {
+      result = 'An error occurred: $error';
+    });
+  });
+}
+```
+- Harus menutup FutureGroup sebelum bisa mendapatkan hasilnya.
+- Menangani error secara eksplisit dengan .catchError().
+- Lebih kompleks karena memerlukan lebih banyak kode.
+
+Langkah 4: Menggunakan Future.wait()
+```kotlin
+void returnFG() {
+  final futures = Future.wait<int>([
+    returnOneAsync(),
+    returnTwoAsync(),
+    returnThreeAsync(),
+  ]);
+
+  futures.then((List<int> value) {
+    int total = value.reduce((a, b) => a + b);
+    setState(() {
+      result = total.toString();
+    });
+  });
+}
+```
+- Tidak perlu menutup Future.wait(), langsung mengeksekusi semua Future.
+- Lebih simpel karena hanya memerlukan satu fungsi untuk mengelola semua Future.
+- Tidak menangani error secara eksplisit, tetapi bisa ditambahkan jika diperlukan.
+
+KESIMPULAN
+✅ Jika ingin kode yang lebih bersih dan ringkas, gunakan Future.wait().
+✅ Jika membutuhkan kontrol lebih dalam menangani error dan mengelola Future satu per satu, gunakan FutureGroup.
+✅ Hasil akhir dari kedua metode tetap sama, hanya pendekatan kode yang berbeda.
+
+
+
 
