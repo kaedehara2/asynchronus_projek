@@ -275,6 +275,53 @@ KESIMPULAN
 - Jika membutuhkan kontrol lebih dalam menangani error dan mengelola Future satu per satu, gunakan FutureGroup.
 - Hasil akhir dari kedua metode tetap sama, hanya pendekatan kode yang berbeda.
 
+## SOAL 9 PRAKTIKUM 5
+
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 9".
+
+JAWABAN 
+Done berhasil running 
+![GIF](screencapture/w5-soal9.gif)
+
+## SOAL 10 PRAKTIKUM 5
+
+- Panggil method handleError() tersebut di ElevatedButton, lalu run. Apa hasilnya? Jelaskan perbedaan kode langkah 1 dan 4!
+
+JAWABAN 
+
+Untuk hasil setelah dilakukan running, aplikasi berjalan lancar tanpa ada error dan masih sama seperti screencapture sebelumnya diatas, akan tetapi ada beberapa penjelasan terkait kode nya disini :
+
+🔹 Langkah 1 (returnError)
+Fungsi ini hanya bertugas untuk mensimulasikan error. Setelah menunggu selama 2 detik (Future.delayed), ia langsung melempar sebuah Exception. Fungsi ini tidak menangani error-nya sendiri, sehingga jika dipanggil, error tersebut harus ditangani oleh kode pemanggil.
+
+```kotlin
+Future returnError() async {
+  await Future.delayed(const Duration(seconds: 2));
+  throw Exception('Something terrible happened!');  
+}
+```
+🔹 Langkah 4 (handleError)
+Fungsi ini digunakan untuk menangani error yang berasal dari pemanggilan returnError(). Di dalamnya terdapat blok try-catch, di mana jika returnError() melempar error, maka error itu ditangkap dan hasilnya ditampilkan ke UI dengan setState. Fungsi ini juga memiliki finally untuk menjalankan perintah tertentu (dalam hal ini, print('Complete')) terlepas dari error terjadi atau tidak.
+
+```kotlin
+Future handleError() async {
+  try {
+    await returnError();
+  }
+  catch (error) {
+    setState(() {
+      result = error.toString();
+    });
+  }
+  finally {
+    print('Complete');
+  }
+}
+```
+- KESIMPULAN
+returnError() hanya memicu error, sedangkan handleError() adalah cara untuk menangani error tersebut dengan aman dan menampilkannya ke pengguna. Jadi, returnError() menyebabkan masalah, dan handleError() menyelesaikannya.
+
+
 
 
 
