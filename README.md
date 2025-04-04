@@ -321,7 +321,55 @@ Future handleError() async {
 - KESIMPULAN
 returnError() hanya memicu error, sedangkan handleError() adalah cara untuk menangani error tersebut dengan aman dan menampilkannya ke pengguna. Jadi, returnError() menyebabkan masalah, dan handleError() menyelesaikannya.
 
+## SOAL 11 PRAKTIKUM 6
 
+- Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda
+
+JAWABAN 
+1. Done
+![SSTUGAS](assets/jawaban-soal11.png)
+
+## SOAL 12 PRAKTIKUM 6
+
+- Jika Anda tidak melihat animasi loading tampil, kemungkinan itu berjalan sangat cepat. Tambahkan delay pada method getPosition() dengan kode await Future.delayed(const Duration(seconds: 3));
+- Apakah Anda mendapatkan koordinat GPS ketika run di browser? Mengapa demikian?
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 12"
+
+JAWABAN 
+
+1. animasi loading sudah tampil dengan durasi awal muncul 3 detik, sebagaimana yang tertampil di GIF
+
+2. Ya, koordinat GPS tetap bisa didapatkan saat menjalankan aplikasi di browser, tetapi ini bergantung pada izin lokasi browser dan kemampuan API Geolocation di web.
+Mengapa koordinat bisa didapatkan di browser?
+
+1.Web API Geolocation
+- Flutter web menggunakan Geolocation API bawaan browser, bukan sensor GPS langsung seperti di perangkat Android.
+- Jika browser memiliki akses ke layanan lokasi (misalnya berdasarkan Wi-Fi atau IP), ia bisa memberikan koordinat perkiraan.
+
+2.Izin Lokasi di Browser
+- Saat pertama kali membuka aplikasi di browser, browser akan meminta izin lokasi. Jika Anda menyetujuinya, browser dapat memberikan koordinat.
+- Jika izin ditolak, lokasi tidak akan didapatkan, dan kode bisa gagal.
+
+3.Metode Penentuan Lokasi di Browser
+- Di Android, Geolocator mendapatkan data dari GPS, Wi-Fi, dan BTS.
+- Di browser, lokasi diperoleh dari:
+-Wi-Fi (jika tersedia)
+-IP Address (jika Wi-Fi tidak tersedia, biasanya kurang akurat)
+-Sensor lain jika perangkat mendukung.
+
+Mengapa koordinat bisa sama dengan di Android?
+- Jika perangkat yang Anda gunakan untuk mengakses browser memiliki GPS dan browser dapat menggunakannya, hasilnya bisa sama atau mendekati dengan yang didapatkan di Android.
+- Namun, jika browser hanya mengandalkan lokasi berdasarkan Wi-Fi atau IP, akurasinya lebih rendah.
+
+Kesimpulan
+✔ Ya, koordinat GPS bisa diperoleh di browser karena menggunakan Geolocation API browser.
+✔ Browser tidak menggunakan sensor GPS langsung, tapi bisa menentukan lokasi melalui Wi-Fi atau IP Address.
+✔ Hasilnya bisa sama atau berbeda dengan Android, tergantung dari metode yang digunakan oleh browser untuk mendapatkan lokasi.
+
+![SSTUGAS](assets/jawaban-soal12.png)
+
+3. hasil screencapture pada perangkat mobile 
+![GIF](screencapture/w5-soal12.gif)
 
 
 

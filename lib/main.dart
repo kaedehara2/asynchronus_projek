@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:async';
-import 'package:async/async.dart';
+import 'package:books/geolocation.dart'; // ✅ Impor file geolocation.dart agar bisa pakai LocationScreen()
+//import 'package:http/http.dart' as http;
+//import 'dart:async';
+//import 'package:async/async.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,17 +14,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ghazilov Magomed',
+      title: 'Son Of Damascus',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const FuturePage(),
+      home: const LocationScreen(), // ✅ Ini maksud dari soal langkah 6
     );
   }
 }
 
-class FuturePage extends StatefulWidget {
+/*class FuturePage extends StatefulWidget {
   const FuturePage({super.key});
 
   @override
@@ -86,55 +86,39 @@ class _FuturePageState extends State<FuturePage> {
     }
   }
 
-
   void returnFG() {
-    //FutureGroup<int> futureGroup = FutureGroup<int>(); // ✅ Ganti nama variabel agar tidak bentrok
-    //futureGroup.add(returnOneAsync());
-    //futureGroup.add(returnTwoAsync());
-    //futureGroup.add(returnThreeAsync());
-    //futureGroup.close();
-final futures = Future.wait<int>([
-    returnOneAsync(),
-    returnTwoAsync(),
-    returnThreeAsync(),
-  ]);
-  futures.then((List<int> value) {
-    int total = value.reduce((a, b) => a + b);
-    setState(() {
-      result = total.toString();
-    });
-  });
-}
-
-  //   futureGroup.future.then((List<int> value) {
-  //     int total = value.reduce((sum, element) => sum + element); // ✅ Ringkas perhitungan
-  //     setState(() {
-  //       result = total.toString();
-  //     });
-  //   }).catchError((error) {
-  //     setState(() {
-  //       result = 'An error occurred: $error'; // ✅ Tambahkan error handling
-  //     });
-  //   });
-  // }
-Future returnError() async {
-  await Future.delayed(const Duration(seconds: 2));
-  throw Exception('Something terrible happened!');  
-}
-
-Future handleError() async {
-  try {
-    await returnError();
-  }
-  catch (error) {
-    setState(() {
-      result = error.toString();
+    final futures = Future.wait<int>([
+      returnOneAsync(),
+      returnTwoAsync(),
+      returnThreeAsync(),
+    ]);
+    futures.then((List<int> value) {
+      int total = value.reduce((a, b) => a + b);
+      setState(() {
+        result = total.toString();
+      });
     });
   }
-  finally {
-    print('Complete');
+
+  Future returnError() async {
+    await Future.delayed(const Duration(seconds: 2));
+    throw Exception('Something terrible happened!');  
   }
-}
+
+  Future handleError() async {
+    try {
+      await returnError();
+    }
+    catch (error) {
+      setState(() {
+        result = error.toString();
+      });
+    }
+    finally {
+      print('Complete');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,11 +132,11 @@ Future handleError() async {
             ElevatedButton(
               onPressed: () {
                 returnError()
-                .then((value){
+                .then((value) {
                   setState(() {
                     result = 'Success';
                   });
-                }).catchError((onError){
+                }).catchError((onError) {
                   setState(() {
                     result = onError.toString();
                   });
@@ -180,3 +164,4 @@ Future handleError() async {
     );
   }
 }
+*/
