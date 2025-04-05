@@ -371,5 +371,68 @@ Kesimpulan
 3. hasil screencapture pada perangkat mobile 
 ![GIF](screencapture/w5-soal12.gif)
 
+## SOAL 13 PRAKTIKUM 7
 
+- Apakah ada perbedaan UI dengan praktikum sebelumnya? Mengapa demikian?
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 13".
+Seperti yang Anda lihat, menggunakan FutureBuilder lebih efisien, clean, dan reactive dengan Future bersama UI.
 
+JAWABAN
+
+1. Tentang perbedaan UI praktikum sebelumnya dengan yang terbaru saat ini (sudah revisi)
+
+- UI Sebelum Revisi (Praktikum Sebelumnya)
+Pada kode sebelumnya, UI dibangun berdasarkan hasil getPosition() langsung di dalam initState() dan menyimpan hasilnya ke dalam variabel myPosition yang bertipe String.
+
+```kotlin
+@override
+void initState() {
+  super.initState();
+  getPosition().then((Position myPos) {
+    myPosition = 'Latitude: ${myPos.latitude} - Longitude: ${myPos.longitude}';
+    setState(() {
+      myPosition = myPosition;
+    });
+  });
+}
+
+...
+
+final myWidget = myPosition == ''
+    ? const CircularProgressIndicator()
+    : Text(myPosition);
+```
+✅ Ciri UI lama:
+- Menampilkan CircularProgressIndicator jika data belum ada (myPosition == '').
+- Menampilkan text koordinat sebagai String biasa kalau data sudah didapat.
+- Tidak ada error handling eksplisit.
+- Mengandalkan variabel String myPosition dan manual update setState()
+
+- UI Setelah Revisi (Terbaru Saat Ini)
+Pada revisi terbaru, awak dah mengganti pendekatan dengan menggunakan FutureBuilder untuk menangani asynchronous data (Future<Position>).
+
+```kotlin
+body: Center(
+  child: FutureBuilder(
+    future: position,
+    builder: (BuildContext context, AsyncSnapshot<Position> snapshot) {
+      ...
+    },
+  ),
+)
+```
+✅Ciri UI baru:
+- Menggunakan FutureBuilder: lebih reaktif dan aman.
+- Secara otomatis menangani loading, data, dan error tanpa perlu setState() manual.
+- Menampilkan CircularProgressIndicator saat loading.
+- Menampilkan text data posisi langsung dari snapshot.data saat berhasil.
+- Sudah disiapkan tempat untuk menangani error (via snapshot.hasError).
+- Tidak lagi menggunakan variabel String myPosition.
+
+- Kesimpulan
+UI terbaru jauh lebih baik dan profesional karena memanfaatkan FutureBuilder yang merupakan cara standar di Flutter untuk menangani data asynchronous. Ini juga membuka jalan untuk menambahkan error handling dan loading state dengan cara yang lebih bersih dan reaktif.
+
+2. Hasil Screencapture GIF
+![GIF](screencapture/w3-soal13.gif)
+
+## SOAL 14 PRAKTIKUM 7
