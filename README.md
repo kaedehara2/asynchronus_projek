@@ -436,3 +436,13 @@ UI terbaru jauh lebih baik dan profesional karena memanfaatkan FutureBuilder yan
 ![GIF](screencapture/w3-soal13.gif)
 
 ## SOAL 14 PRAKTIKUM 7
+
+- Apakah ada perbedaan UI dengan langkah sebelumnya? Mengapa demikian?
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 14"
+
+JAWABAN
+
+1. Terdapat perbedaan UI antara langkah sebelumnya dan yang terbaru. Pada versi sebelumnya, UI hanya menampilkan teks lokasi setelah data berhasil diambil, tanpa indikator proses pemuatan atau penanganan error. Sedangkan pada versi terbaru, UI menjadi lebih interaktif dan informatif karena menggunakan FutureBuilder. Ini memungkinkan aplikasi menampilkan indikator loading saat menunggu data, pesan error jika terjadi kegagalan, dan data lokasi saat berhasil diperoleh. Hal ini memberikan pengalaman pengguna yang lebih baik karena pengguna tahu apa yang sedang terjadi di dalam aplikasi.
+
+2. Hasil Screencapture GIF
+![GIF](screencapture/w3-soal14.gif)
