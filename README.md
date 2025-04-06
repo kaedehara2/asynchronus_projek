@@ -446,3 +446,26 @@ JAWABAN
 
 2. Hasil Screencapture GIF
 ![GIF](screencapture/w3-soal14.gif)
+
+## SOAL 15 PRAKTIKUM 8
+
+- Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda.
+- Silakan ganti dengan warna tema favorit Anda.
+
+JAWABAN
+
+1. Done 
+![SSTUGAS](assets/jawaban-soal13.png)
+
+## SOAL 16 PRAKTIKUM 8
+
+- Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
+- Gantilah 3 warna pada langkah 5 dengan warna favorit Anda!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 16".
+
+JAWABAN
+1. Ketika tombol di halaman pertama diklik, pengguna diarahkan ke halaman kedua untuk memilih warna. Setelah memilih, warna tersebut dikirim kembali ke halaman pertama dan langsung mengubah warna background-nya. Hal ini terjadi karena `Navigator.pop` mengembalikan nilai, dan `await Navigator.push` menunggu serta menerimanya, lalu `setState` memperbarui tampilan sesuai warna yang dipilih.
+
+Hasil Screencapture 
+![GIF](screencapture/w3-soal16.gif)
+

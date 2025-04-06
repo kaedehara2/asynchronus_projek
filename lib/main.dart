@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:books/geolocation.dart'; // ✅ Impor file geolocation.dart agar bisa pakai LocationScreen()
+//import 'package:books/geolocation.dart'; // ✅ Impor file geolocation.dart agar bisa pakai LocationScreen()
+import 'package:books/navigation_first.dart';
 //import 'package:http/http.dart' as http;
 //import 'dart:async';
 //import 'package:async/async.dart';
@@ -8,21 +9,38 @@ void main() {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Son Of Damascus',
+      debugShowCheckedModeBanner: false,
+      title: 'Navigation Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
-      home: const LocationScreen(), // ✅ Ini maksud dari soal langkah 6
+      // ✅ Ganti properti `home` agar langsung ke NavigationFirst
+      home: const NavigationFirst(),
     );
   }
 }
+
+
+//class MyApp extends StatelessWidget {
+//  const MyApp({super.key});
+
+//  @override
+  //Widget build(BuildContext context) {
+    //return MaterialApp(
+      //title: 'Son Of Damascus',
+      //theme: ThemeData(
+       // primarySwatch: Colors.blue,
+      //),
+      //home: const LocationScreen(), // ✅ Ini maksud dari soal langkah 6
+    //);
+  //}
+//}
 
 /*class FuturePage extends StatefulWidget {
   const FuturePage({super.key});
