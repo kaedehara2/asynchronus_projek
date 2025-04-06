@@ -469,3 +469,16 @@ JAWABAN
 Hasil Screencapture 
 ![GIF](screencapture/w3-soal16.gif)
 
+
+## SOAL 17 PRAKTIKUM 9
+
+- Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?
+- Gantilah 3 warna pada langkah 3 dengan warna favorit Anda!
+- Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W5: Soal 17".
+
+JAWABAN 
+
+1. Saat setiap button diklik, warna latar belakang layar akan berubah sesuai warna yang dipilih (Green, Pink, atau Yellow). Ini terjadi karena Navigator.pop() mengembalikan nilai warna yang dipilih, kemudian nilai tersebut diterima oleh variabel result dan disimpan ke dalam state color, lalu setState() memicu rebuild UI dengan warna baru
+
+2. Hasil ScreenCapture 
+![GIF](screencapture/w3-soal17.gif)

@@ -1,6 +1,8 @@
+import 'package:books/navigation_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:books/navigation_dialog.dart';
 //import 'package:books/geolocation.dart'; // ✅ Impor file geolocation.dart agar bisa pakai LocationScreen()
-import 'package:books/navigation_first.dart';
+//import 'package:books/navigation_first.dart';
 //import 'package:http/http.dart' as http;
 //import 'dart:async';
 //import 'package:async/async.dart';
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
       ),
       // ✅ Ganti properti `home` agar langsung ke NavigationFirst
-      home: const NavigationFirst(),
+      home: const NavigationDialogScreen(),
     );
   }
 }
